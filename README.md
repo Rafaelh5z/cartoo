@@ -701,6 +701,17 @@ Para escalar la aplicación, dividir en micro-frontends:
 - `@products/checkout`
 - `@products/user-profile`
 
+### 11. Mejoras en Testing y Manejo de Errores
+
+#### Test Unitarios
+- Mejoraría la cobertura y profundidad de los tests unitarios, especialmente en casos de uso, lógica de dominio y componentes UI.
+- Implementaría mocks y pruebas de integración para asegurar la robustez de cada capa.
+
+#### Manejo de Excepciones en UI
+- Mejoraría el manejo de errores y excepciones a nivel de interfaz de usuario.
+- Implementaría componentes globales de Error Boundary para capturar y mostrar mensajes claros al usuario.
+- Añadiría feedback visual y logs para errores inesperados, permitiendo una mejor experiencia y depuración.
+
 ## 📚 Recursos Adicionales
 
 ### Documentación del Proyecto

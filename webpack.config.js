@@ -96,22 +96,22 @@ module.exports = (env, argv) => {
                 swDest: 'service-worker.js',
                 exclude: [/\.map$/, /^manifest.*\.js$/],
             }),
-        ].filter(Boolean),
+        ].filter(Boolean), // Filter out false values (like the conditional plugins)
         devServer: {
             static: {
-                directory: path.join(__dirname, 'public'),
+                directory: path.join(__dirname, 'public'), // Serve static files from the 'public' directory
             },
-            historyApiFallback: true,
-            compress: true,
-            port: 5173,
-            hot: true,
-            open: true,
+            historyApiFallback: true, // Enable SPA routing support
+            compress: true, // Enable gzip compression for better performance
+            port: 5173, // Use the same port as Vite for consistency
+            hot: true, // Enable hot module replacement
+            open: true, // Automatically open the browser on server start
         },
-        devtool: isDevelopment ? 'eval-source-map' : 'source-map',
+        devtool: isDevelopment ? 'eval-source-map' : 'source-map', // Use faster source maps in development, full source maps in production
         performance: {
-            hints: isDevelopment ? false : 'warning',
-            maxEntrypointSize: 512000,
-            maxAssetSize: 512000,
+            hints: isDevelopment ? false : 'warning', // Disable performance hints in development, show warnings in production
+            maxEntrypointSize: 512000, // 500 KB
+            maxAssetSize: 512000, // 500 KB
         },
     };
 };
