@@ -28,7 +28,7 @@ import type { ProductRepositoryContract } from '@/Product/Domain/Contracts/Produ
  * initializeApp();
  */
 
-const GRAPHQL_API_URL = import.meta.env.VITE_GRAPHQL_API_URL;
+const GRAPHQL_API_URL = process.env.VITE_GRAPHQL_API_URL;
 
 /**
  * Registra todos los servicios y dependencias de la aplicación

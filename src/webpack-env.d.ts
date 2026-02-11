@@ -1,3 +1,11 @@
+// Webpack environment variables
+declare namespace NodeJS {
+    interface ProcessEnv {
+        NODE_ENV: 'development' | 'production';
+        VITE_GRAPHQL_API_URL: string;
+    }
+}
+
 // Declaraciones de tipos para archivos CSS
 declare module '*.css' {
     const content: { [className: string]: string };
