@@ -49,7 +49,7 @@ export function registerDependencies(): void {
         productRepository
     );
 
-    // 4. Registrar los casos de uso como singletons
+    // 4. Register use cases as singletons
     ServiceProvider.register<GetAllProductsUseCase>(
         'GetAllProductsUseCase',
         new GetAllProductsUseCase()
