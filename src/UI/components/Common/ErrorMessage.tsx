@@ -34,19 +34,19 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
     onRetry
 }) => {
     return (
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
             <Message
                 severity="error"
                 text={
                     <div className="flex flex-col gap-2">
                         {title && (
-                            <span className="font-semibold">{title}</span>
+                            <span className="font-semibold text-sm sm:text-base">{title}</span>
                         )}
-                        <span>{message}</span>
+                        <span className="text-sm sm:text-base">{message}</span>
                         {onRetry && (
                             <button
                                 onClick={onRetry}
-                                className="mt-2 text-sm underline hover:no-underline"
+                                className="mt-2 text-xs sm:text-sm underline hover:no-underline"
                             >
                                 Try again
                             </button>

@@ -11,7 +11,7 @@ export const ProductCardHeader: React.FC<ProductCardHeaderProps> = ({ title, ima
         <img
             alt={title}
             src={imageUrl || noImagePlaceholder}
-            className="w-full h-48 object-cover"
+            className="w-full h-40 sm:h-48 md:h-56 object-cover"
             onError={(e) => {
                 (e.target as HTMLImageElement).src = noImagePlaceholder;
             }}

@@ -32,18 +32,18 @@ export const ProductListHeader: React.FC<ProductListHeaderProps> = ({
     totalProducts,
 }) => {
     return (
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
                         {title}
                         {totalProducts !== undefined && totalProducts > 0 && (
-                            <span className="ml-3 text-2xl font-normal text-gray-500">
+                            <span className="ml-2 sm:ml-3 text-lg sm:text-2xl font-normal text-gray-500">
                                 ({totalProducts})
                             </span>
                         )}
                     </h1>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600">
                         {subtitle}
                     </p>
                 </div>

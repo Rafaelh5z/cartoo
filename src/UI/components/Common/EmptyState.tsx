@@ -41,23 +41,23 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
     action
 }) => {
     return (
-        <div className="flex flex-col items-center justify-center py-12 px-4">
+        <div className="flex flex-col items-center justify-center py-8 sm:py-12 px-4">
             {/* Icon */}
             <div className="mb-4">
                 <i
-                    className={`${icon} text-6xl text-gray-300`}
+                    className={`${icon} text-5xl sm:text-6xl md:text-7xl text-gray-300`}
                     aria-hidden="true"
                 />
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 mb-2 text-center">
                 {title}
             </h3>
 
             {/* Message */}
             {message && (
-                <p className="text-gray-500 text-center max-w-md mb-6">
+                <p className="text-sm sm:text-base text-gray-500 text-center max-w-md mb-4 sm:mb-6 px-2">
                     {message}
                 </p>
             )}

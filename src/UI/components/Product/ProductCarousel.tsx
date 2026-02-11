@@ -17,7 +17,7 @@ export const ProductCarousel = ({ images }: { images: string[] }) => {
             <img
                 src={image}
                 alt="Product"
-                className="w-full h-96 object-cover rounded-lg"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg"
                 onError={(e) => {
                     (e.target as HTMLImageElement).src = noImagePlaceholder;
                 }}

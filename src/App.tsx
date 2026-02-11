@@ -15,7 +15,7 @@ import './App.css';
  */
 function App() {
     return (
-        <div className="app">
+        <div className="app min-h-screen w-full">
             <AppRouter />
         </div>
     );

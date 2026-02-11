@@ -58,12 +58,12 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
             className="cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
             onClick={onClick}
         >
-            <div className="flex flex-col h-full">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+            <div className="flex flex-col h-full p-2 sm:p-3">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                     {product.title}
                 </h3>
                 {product.description && (
-                    <p className="text-sm text-gray-600 line-clamp-2 grow">
+                    <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 grow">
                         {product.description}
                     </p>
                 )}

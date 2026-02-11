@@ -77,7 +77,7 @@ export const ProductDetailScreen = () => {
                 {/* Product Detail */}
                 {!isLoading && !error && selectedProduct && (
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 p-4 sm:p-6 lg:p-8">
                             {/* Images Column */}
                             <div>
                                 <ProductCarousel images={selectedProduct.images ?? []} />
@@ -87,10 +87,10 @@ export const ProductDetailScreen = () => {
                             <div className="flex flex-col">
                                 <ProductInfoColumn product={selectedProduct} />
                                 {/* Actions */}
-                                <div className="mt-auto pt-6 border-t border-gray-200">
-                                    <div className="flex gap-4">
-                                        <AddToCartButton />
-                                        <BuyNowButton />
+                                <div className="mt-auto pt-4 sm:pt-6 border-t border-gray-200">
+                                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                                        <AddToCartButton className="flex-1 w-full" />
+                                        <BuyNowButton className="flex-1 w-full" />
                                     </div>
                                 </div>
                             </div>
