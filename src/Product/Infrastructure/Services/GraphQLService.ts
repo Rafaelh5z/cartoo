@@ -41,14 +41,34 @@ export class GraphQLService {
                     });
                 }
             }),
-            cache: new InMemoryCache(),
+            cache: new InMemoryCache({
+                // Configurar caché para persitir datos
+                typePolicies: {
+                    Query: {
+                        fields: {
+                            products: {
+                                merge(existing, incoming) {
+                                    return incoming;
+                                },
+                            },
+                            product: {
+                                merge(existing, incoming) {
+                                    return incoming;
+                                },
+                            },
+                        },
+                    },
+                },
+            }),
             defaultOptions: {
                 watchQuery: {
-                    fetchPolicy: 'network-only', // Siempre obtener datos frescos
+                    // cache-first: Usa caché si está disponible, funciona offline
+                    fetchPolicy: 'cache-first',
                     errorPolicy: 'all',
                 },
                 query: {
-                    fetchPolicy: 'network-only',
+                    // cache-first: Prioriza caché, permite funcionamiento offline
+                    fetchPolicy: 'cache-first',
                     errorPolicy: 'all',
                 },
             },
@@ -89,6 +109,25 @@ export class GraphQLService {
             
             // Mejorar mensajes de error
             if (error.message?.includes('Network error') || error.message?.includes('Failed to fetch')) {
+                // Si hay error de red, intentar con caché
+                console.warn('Network error detected, attempting to use cached data...');
+                
+                try {
+                    // Intentar obtener datos del caché de Apollo
+                    const cachedResult = await this.client.query<T, TVariables>({
+                        query: queryDocument,
+                        variables: variables as TVariables,
+                        fetchPolicy: 'cache-only', // Solo caché
+                    });
+                    
+                    if (cachedResult.data) {
+                        console.info('Using cached data (offline mode)');
+                        return cachedResult.data;
+                    }
+                } catch (cacheError) {
+                    console.error('No cached data available:', cacheError);
+                }
+                
                 throw new Error('Unable to connect to the server. Please check your internet connection and try again.');
             }
             

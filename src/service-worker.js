@@ -36,36 +36,43 @@ registerRoute(
 );
 
 // Cache images with CacheFirst strategy
+// Configurado para 300 imágenes (100 productos x 3 imágenes promedio) durante 30 días
 registerRoute(
     ({ request }) => request.destination === 'image',
     new CacheFirst({
-        cacheName: 'images',
+        cacheName: 'product-images',
         plugins: [
             new CacheableResponsePlugin({
                 statuses: [0, 200],
             }),
             new ExpirationPlugin({
-                maxEntries: 60,
-                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+                maxEntries: 300, // 100 productos x 3 imágenes promedio
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 días
             }),
         ],
     })
 );
 
-// Cache API calls with NetworkFirst strategy
+// Cache GraphQL API calls (GET y POST) para funcionamiento offline
+// NetworkFirst con fallback a cache permite 30 días offline
 registerRoute(
-    ({ url }) => url.origin === 'https://api.escuelajs.co',
+    ({ url, request }) => {
+        // Captura tanto GET como POST requests a la API GraphQL
+        return url.origin === 'https://api.escuelajs.co' && 
+            (request.method === 'GET' || request.method === 'POST');
+    },
     new NetworkFirst({
-        cacheName: 'api-cache',
+        cacheName: 'graphql-api-cache',
         plugins: [
             new CacheableResponsePlugin({
                 statuses: [0, 200],
             }),
             new ExpirationPlugin({
-                maxEntries: 50,
-                maxAgeSeconds: 5 * 60, // 5 minutes
+                maxEntries: 100, // Suficiente para múltiples queries
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 días - funciona offline
             }),
         ],
+        networkTimeoutSeconds: 3, // Fallback a cache si red tarda >3s
     })
 );
 
@@ -88,6 +95,7 @@ registerRoute(
                 statuses: [0, 200],
             }),
         ],
+        networkTimeoutSeconds: 3, // Fallback a cache si red tarda >3s
     })
 );
 
