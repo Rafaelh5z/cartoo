@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#3b82f6"/>
+  
+  <!-- Shopping Cart Icon -->
+  <g transform="translate(128, 128)">
+    <!-- Cart Body -->
+    <path d="M 0 32 L 32 32 L 64 160 L 224 160 L 256 64 L 80 64 L 72 32 Q 72 16 56 16 L 0 16 Z" 
+          fill="#ffffff" stroke="#ffffff" stroke-width="4"/>
+    
+    <!-- Wheels -->
+    <circle cx="96" cy="224" r="24" fill="#ffffff"/>
+    <circle cx="192" cy="224" r="24" fill="#ffffff"/>
+    
+    <!-- Cart Lines -->
+    <path d="M 88 80 L 96 120 M 120 80 L 128 120 M 152 80 L 160 120 M 184 80 L 192 120" 
+          stroke="#3b82f6" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="256" y="400" font-family="Arial, sans-serif" font-size="48" font-weight="bold" 
+        fill="#ffffff" text-anchor="middle">Products</text>
+</svg>

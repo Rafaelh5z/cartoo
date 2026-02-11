@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { PrimeReactProvider } from 'primereact/api';
 import App from './App';
 import { initializeApp } from './bootstrap';
+import { registerServiceWorker } from '@/Shared/Infrastructure/ServiceWorkerRegistration';
 import './index.css';
 
 // Importar estilos de PrimeReact
@@ -43,3 +44,6 @@ root.render(
         </PrimeReactProvider>
     </StrictMode>
 );
+
+// Registrar Service Worker para PWA (solo en producción)
+registerServiceWorker();

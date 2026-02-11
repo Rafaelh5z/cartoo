@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
 module.exports = (env, argv) => {
@@ -73,6 +75,13 @@ module.exports = (env, argv) => {
                 template: './index.html',
                 inject: 'body',
             }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    { from: 'public/manifest.json', to: 'manifest.json' },
+                    { from: 'public/icons', to: 'icons' },
+                    { from: 'public/favicon.svg', to: 'favicon.svg' },
+                ],
+            }),
             new Dotenv({
                 systemvars: true,
             }),
@@ -81,6 +90,11 @@ module.exports = (env, argv) => {
             }),
             !isDevelopment && new MiniCssExtractPlugin({
                 filename: 'css/[name].[contenthash].css',
+            }),
+            !isDevelopment && new InjectManifest({
+                swSrc: './src/service-worker.js',
+                swDest: 'service-worker.js',
+                exclude: [/\.map$/, /^manifest.*\.js$/],
             }),
         ].filter(Boolean),
         devServer: {
