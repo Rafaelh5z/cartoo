@@ -1,9 +1,25 @@
+import { formatPrice } from '@/Shared/Utils/formatPrice';
+
+interface ProductInfoColumnProps {
+    product: {
+        id: number;
+        title: string;
+        price: number;
+        description?: string;
+        category?: {
+            id: number;
+            name: string;
+            image: string;
+        };
+    };
+}
+
 /**
  * ProductInfoColumn - Componente para mostrar información del producto
  * Props:
  * - product: Product
  */
-export const ProductInfoColumn = ({ product }: { product: any }) => (
+export const ProductInfoColumn: React.FC<ProductInfoColumnProps> = ({ product }) => (
     <div className="flex flex-col">
         <div className="mb-4">
             {product.category && (
@@ -18,7 +34,7 @@ export const ProductInfoColumn = ({ product }: { product: any }) => (
 
         <div className="mb-4 sm:mb-6">
             <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-600">
-                ${product.price.toFixed(2)}
+                {formatPrice(product.price)}
             </p>
         </div>
 

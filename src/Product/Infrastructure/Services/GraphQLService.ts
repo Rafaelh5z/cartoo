@@ -94,21 +94,18 @@ export class GraphQLService {
                 variables: variables as TVariables,
             });
 
-            // Verificar si hay errores en el resultado
-            if (result.error) {
-                throw new Error(result.error.message);
-            }
-
             if (!result.data) {
                 throw new Error('No data returned from GraphQL query');
             }
 
             return result.data;
-        } catch (error: any) {
+        } catch (error) {
             console.error('GraphQL Query Error:', error);
             
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            
             // Mejorar mensajes de error
-            if (error.message?.includes('Network error') || error.message?.includes('Failed to fetch')) {
+            if (errorMessage.includes('Network error') || errorMessage.includes('Failed to fetch')) {
                 // Si hay error de red, intentar con caché
                 console.warn('Network error detected, attempting to use cached data...');
                 
@@ -131,7 +128,7 @@ export class GraphQLService {
                 throw new Error('Unable to connect to the server. Please check your internet connection and try again.');
             }
             
-            if (error.message?.includes('timeout')) {
+            if (errorMessage.includes('timeout')) {
                 throw new Error('Request timed out. The server is taking too long to respond.');
             }
             

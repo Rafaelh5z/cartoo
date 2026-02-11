@@ -26,7 +26,7 @@ class ServiceProviderClass {
    */
   register<T>(key: string, implementation: T): void {
     if (this.services.has(key)) {
-      console.warn(`Service "${key}" ya está registrado. Se sobrescribirá.`);
+      console.warn(`Service "${key}" is already registered. It will be overwritten.`);
     }
     this.services.set(key, implementation);
   }
@@ -42,9 +42,9 @@ class ServiceProviderClass {
 
     if (!service) {
       throw new Error(
-        `Servicio "${key}" no encontrado. ` +
-          `Asegúrate de registrarlo con ServiceProvider.register() ` +
-          `antes de intentar resolverlo.`,
+        `Service "${key}" not found. ` +
+          `Make sure to register it with ServiceProvider.register() ` +
+          `before attempting to resolve it.`,
       );
     }
 
