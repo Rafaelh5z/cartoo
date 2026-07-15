@@ -739,7 +739,7 @@ Este proyecto es un ejercicio técnico demostrativo.
 
 ## 👥 Autor
 
-[Tu Nombre]
+**Rafael Herrera** · [GitHub](https://github.com/Rafaelh5z) · [LinkedIn](https://linkedin.com/in/rafael-herrera-sanchez)
 
 ---
 
