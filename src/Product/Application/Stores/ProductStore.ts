@@ -1,6 +1,7 @@
 import { create } from 'zustand';
-import { GetAllProductsUseCase } from '../UseCases/Get/GetAllProductsUseCase';
-import { GetProductByIdUseCase } from '../UseCases/Get/GetProductByIdUseCase';
+import { ServiceProvider } from '@/Shared/Infrastructure/ServiceProvider';
+import type { GetAllProductsUseCase } from '../UseCases/Get/GetAllProductsUseCase';
+import type { GetProductByIdUseCase } from '../UseCases/Get/GetProductByIdUseCase';
 
 /**
  * ProductStore - Estado global de productos usando Zustand
@@ -68,7 +69,7 @@ export const useProductStore = create<ProductState>((set) => ({
         set({ isLoading: true, error: null });
 
         try {
-            const useCase = new GetAllProductsUseCase();
+            const useCase = ServiceProvider.resolve<GetAllProductsUseCase>('GetAllProductsUseCase');
             const products = await useCase.execute();
 
             // Convertir entidades a objetos planos para el store
@@ -101,7 +102,7 @@ export const useProductStore = create<ProductState>((set) => ({
         set({ isLoading: true, error: null });
 
         try {
-            const useCase = new GetProductByIdUseCase();
+            const useCase = ServiceProvider.resolve<GetProductByIdUseCase>('GetProductByIdUseCase');
             const product = await useCase.execute(id);
 
             set({

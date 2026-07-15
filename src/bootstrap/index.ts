@@ -1,6 +1,8 @@
 import { ServiceProvider } from '@/Shared/Infrastructure/ServiceProvider';
 import { GraphQLService } from '@/Product/Infrastructure/Services/GraphQLService';
 import { ProductRepository } from '@/Product/Infrastructure/Repositories/ProductRepository';
+import { GetAllProductsUseCase } from '@/Product/Application/UseCases/Get/GetAllProductsUseCase';
+import { GetProductByIdUseCase } from '@/Product/Application/UseCases/Get/GetProductByIdUseCase';
 import type { ProductRepositoryContract } from '@/Product/Domain/Contracts/ProductRepositoryContract';
 
 /**
@@ -45,6 +47,17 @@ export function registerDependencies(): void {
     ServiceProvider.register<ProductRepositoryContract>(
         'ProductRepository',
         productRepository
+    );
+
+    // 4. Register use cases as singletons
+    ServiceProvider.register<GetAllProductsUseCase>(
+        'GetAllProductsUseCase',
+        new GetAllProductsUseCase()
+    );
+
+    ServiceProvider.register<GetProductByIdUseCase>(
+        'GetProductByIdUseCase',
+        new GetProductByIdUseCase()
     );
 
     console.log('✅ Dependencies registered successfully');
